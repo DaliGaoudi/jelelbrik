@@ -120,8 +120,6 @@ async def bsout(ctx, vid):
         await ctx.send("ERROR: Music playing")
         return
 
-    await ctx.send("Getting everything ready now")
-
     voice = get(client.voice_clients, guild=ctx.guild)
 
     ydl_opts = {
