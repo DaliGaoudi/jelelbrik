@@ -5,14 +5,13 @@ import asyncio
 import os
 import youtube_dl
 
-
 client = commands.Bot(command_prefix='>')
 
 urls = {
     "rwayak": "https://youtu.be/3nPrRUV7L4o",
     "tnayekwahdek": "https://youtu.be/vUWn2Dh3o6c",
     "ebeedzebi": "https://youtu.be/LuVb5mFL-3s",
-    "tetmaneyk": "https://youtu.be/2TpSjkgfoJI"
+    "tetmanyek": "https://youtu.be/2TpSjkgfoJI"
 }
 
 OPUS_LIBS = ['libopus-0.x86.dll', 'libopus-0.x64.dll',
@@ -35,6 +34,14 @@ def load_opus_lib(opus_libs=OPUS_LIBS):
 
 
 @client.event
+async def on_message(message):
+    count = 0
+    voicechannel = message.author.voice.channel
+    if not voicechannel == None and message.author.id == 356558972607791115:
+        await message.channel.send("OOO ti haw Deli lahne tlaa ya zebi houwa mahsoub rabi rao khlakni ya zab")
+
+
+@client.event
 async def on_ready():
     print('bot is ready')
 
@@ -50,8 +57,8 @@ async def on_member_remove(member):
 
 
 @client.command()
-async def aasba(ctx):
-    await ctx.send('yaatek aasba!')
+async def aasba(ctx, target: discord.Member):
+    await ctx.send("yaatek aasba ya " + target.mention + "!")
 
 
 @client.command()
@@ -65,14 +72,14 @@ async def nhebnalaab(ctx):
 
 
 @client.command()
-async def join(ctx):
+async def nawarna(ctx):
     channel = ctx.author.voice.channel
     await channel.connect()
     await ctx.send("haw jit!")
 
 
 @client.command()
-async def leave(ctx):
+async def okhrejnayek(ctx):
     await ctx.voice_client.disconnect()
     await ctx.send("maadch kdar f hel bled")
 
