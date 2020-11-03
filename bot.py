@@ -33,12 +33,11 @@ def load_opus_lib(opus_libs=OPUS_LIBS):
                            (', '.join(opus_libs)))
 
 
-@client.event
-async def on_message(message):
-    count = 0
-    voicechannel = message.author.voice.channel
-    if not voicechannel == None and message.author.id == 356558972607791115:
-        await message.channel.send("OOO ti haw Deli lahne tlaa ya zebi houwa mahsoub rabi rao khlakni ya zab")
+# @client.event
+# async def on_message(message):
+#    voicechannel = message.author.voice.channel
+#    if not voicechannel == None and message.author.id == 356558972607791115:
+#        await message.channel.send("OOO ti haw Deli lahne tlaa ya zebi houwa mahsoub rabi rao khlakni ya zab")
 
 
 @client.event
