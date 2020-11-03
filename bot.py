@@ -60,7 +60,7 @@ async def aasba(ctx, target: discord.Member):
     await ctx.send("yaatek aasba ya " + target.mention + "!")
 
 
-@client.command()
+@client.command(aliases=["assbaenh ", "aasbaa"])
 async def aasbaenh(ctx, target: discord.Member):
     await ctx.send('yaatek aasba ala sormek ya!' + target.mention)
 
@@ -101,7 +101,7 @@ async def play(ctx, url: str):
         await ctx.send("ERROR: Music playing")
         return
 
-    await ctx.send("Getting everything ready now")
+    await ctx.send("nsakhen f darbouka haw jek")
 
     voice = get(client.voice_clients, guild=ctx.guild)
 
