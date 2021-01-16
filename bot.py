@@ -9,16 +9,11 @@ import json
 
 client = commands.Bot(command_prefix='>')
 
-main2 = ["rwayak", "tnayekwahdek"]
+main2 = ["rwayak", "tnayekwahdek", "ebeedzebi", "tetmanyek"]
 
-url2 = ["https://youtu.be/3nPrRUV7L4o", "https://youtu.be/vUWn2Dh3o6c"]
+url2 = ["https://youtu.be/3nPrRUV7L4o", "https://youtu.be/vUWn2Dh3o6c",
+        "https://youtu.be/LuVb5mFL-3s", "https://youtu.be/2TpSjkgfoJI"]
 
-urls = {
-    "rwayak": "https://youtu.be/3nPrRUV7L4o",
-    "tnayekwahdek": "https://youtu.be/vUWn2Dh3o6c",
-    "ebeedzebi": "https://youtu.be/LuVb5mFL-3s",
-    "tetmanyek": "https://youtu.be/2TpSjkgfoJI"
-}
 
 OPUS_LIBS = ['libopus-0.x86.dll', 'libopus-0.x64.dll',
              'libopus-0.dll', 'libopus.so.0', 'libopus.0.dylib']
