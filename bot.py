@@ -4,8 +4,14 @@ from discord.utils import get
 import asyncio
 import os
 import youtube_dl
+import json
+
 
 client = commands.Bot(command_prefix='>')
+
+main2 = ["rwayak", "tnayekwahdek"]
+
+url2 = ["https://youtu.be/3nPrRUV7L4o", "https://youtu.be/vUWn2Dh3o6c"]
 
 urls = {
     "rwayak": "https://youtu.be/3nPrRUV7L4o",
@@ -38,6 +44,50 @@ def load_opus_lib(opus_libs=OPUS_LIBS):
 #    voicechannel = message.author.voice.channel
 #    if not voicechannel == None and message.author.id == 356558972607791115:
 #        await message.channel.send("OOO ti haw Deli lahne tlaa ya zebi houwa mahsoub rabi rao khlakni ya zab")
+
+
+queue = []
+
+
+# def reopen():
+#    savefile = open("backup.json", "r")
+#    main2 = json.loads(savefile.read())
+
+#   savefile0 = open("backup0.json", "r")
+#  url = json.loads(savefile0.read())
+
+def reopen():
+    with open('output.txt', 'r') as f:
+        main2 = f.read().split('\n')
+
+    with open('output2.txt', 'r') as f2:
+        url2 = f2.read().split('\n')
+
+
+@client.command()
+async def thakafni(ctx, video, url: str):
+    main2.append(video)
+    url2.append(url)
+
+    with open('output.txt', 'w') as f:
+        for item in main2:
+            f.write(str(item)+'\n')
+
+    with open('output2.txt', 'w') as f2:
+        for item2 in url2:
+            f2.write(str(item2)+'\n')
+    reopen()
+
+# @client.command()
+# async def thakafni(ctx, video, url: str):
+#    main2.append(video)
+    # url2.append(url)
+    #savefile = open("backup.json", "w")
+   # savefile.write(json.dumps(main2))
+
+  #  savefile0 = open("backup0.json", "w")
+ #   savefile0.write(json.dumps(url2))
+#    reopen()
 
 
 @client.event
@@ -89,16 +139,16 @@ async def jomlaop(ctx, place):
 
 
 @client.command(pass_context=True, aliases=['p', 'pla'])
-async def play(ctx, url: str):
-
+async def ghani(ctx, url: str):
+    queue.append(url)
     song_there = os.path.isfile("song.mp3")
     try:
         if song_there:
             os.remove("song.mp3")
-            print("Removed old song file")
+            print("old file tfassakh")
     except PermissionError:
-        print("Trying to delete song file, but it's being played")
-        await ctx.send("ERROR: Music playing")
+        print("l file yetkra tnajamch tfassakh")
+        await ctx.send("famma ghne")
         return
 
     await ctx.send("nsakhen f darbouka haw jek")
@@ -115,8 +165,9 @@ async def play(ctx, url: str):
     }
 
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        print("Downloading audio now\n")
-        ydl.download([url])
+        for i in queue:
+            print("Downloading audio now\n")
+            ydl.download([i])
 
     for file in os.listdir("./"):
         if file.endswith(".mp3"):
@@ -135,7 +186,8 @@ async def play(ctx, url: str):
 
 @client.command(pass_context=True)
 async def bsout(ctx, vid):
-    url = urls[vid]
+    indexx = main2.index(vid)
+    url = url2[indexx]
     song_there = os.path.isfile("song.mp3")
     try:
         if song_there:
@@ -170,7 +222,7 @@ async def bsout(ctx, vid):
     voice.play(discord.FFmpegPCMAudio("song.mp3"),
                after=lambda e: print("Song done!"))
     voice.source = discord.PCMVolumeTransformer(voice.source)
-    voice.source.volume = 0.07
+    voice.source.volume = 0.1
 
     nname = name.rsplit("-", 2)
     print("playing\n")
